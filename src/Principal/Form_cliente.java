@@ -16,7 +16,7 @@ import javax.swing.event.DocumentListener;
 
 /**
  *
- * @author William
+ * @author Guilherme e João Antônio
  */
 public class Form_cliente extends javax.swing.JFrame {
     /**

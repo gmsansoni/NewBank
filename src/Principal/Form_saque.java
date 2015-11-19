@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author William
+ * @author Guilherme e João Antônio
  */
 public class Form_saque extends javax.swing.JFrame {
 

@@ -8,7 +8,7 @@ package Principal;
 
 /**
  *
- * @author William
+ * @author Guilherme e João Antônio
  */
 public class Form_sobre extends javax.swing.JFrame {
 
@@ -48,7 +48,7 @@ public class Form_sobre extends javax.swing.JFrame {
         imageLabel1.setMaximumSize(new java.awt.Dimension(100, 100));
         imageLabel1.setMinimumSize(new java.awt.Dimension(100, 100));
 
-        appVendorLabel2.setText("Cristiano e William");
+        appVendorLabel2.setText("Guilherme e João Antônio");
 
         appTitleLabel2.setFont(appTitleLabel2.getFont().deriveFont(appTitleLabel2.getFont().getStyle() | java.awt.Font.BOLD, appTitleLabel2.getFont().getSize()+4));
         appTitleLabel2.setText("NewBanco");

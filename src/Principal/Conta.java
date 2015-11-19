@@ -8,7 +8,7 @@ package Principal;
 
 /**
  *
- * @author William
+ * @author Guilherme e João Antônio
  */
 public class Conta extends javax.swing.JFrame {
 

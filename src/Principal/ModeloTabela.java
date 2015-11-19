@@ -11,7 +11,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author William
+ * @author Guilherme e João Antônio
  */
 public class ModeloTabela extends AbstractTableModel{
     private ArrayList linhas = null;

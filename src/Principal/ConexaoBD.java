@@ -38,7 +38,7 @@ public class ConexaoBD {
 		{
 			//criar a conexao
 			
-			con = DriverManager.getConnection(ConexaoBD,"root", "1234");
+			con = DriverManager.getConnection(ConexaoBD,"root", "");
                       
 		}
 		catch(SQLException e)

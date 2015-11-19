@@ -123,7 +123,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="appVendorLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cristiano e William"/>
+        <Property name="text" type="java.lang.String" value="Guilherme e Jo&#xe3;o Ant&#xf4;nio"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="true"/>
