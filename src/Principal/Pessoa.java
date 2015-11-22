@@ -10,9 +10,9 @@ package Principal;
  * @author Bode
  */
 public abstract class Pessoa {
-    String Nome;
-    String Sobrenome;
-    String CPF_CNPJ;
+    protected String Nome;
+    protected String Sobrenome;
+    protected String CPF_CNPJ;
 
     public Pessoa(String Nome, String Sobrenome, String CPF_CNPJ) {
         this.Nome = Nome;
