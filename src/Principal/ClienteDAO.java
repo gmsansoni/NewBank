@@ -20,17 +20,17 @@ import javax.swing.ListSelectionModel;
 public class ClienteDAO {
     
     
-    public void CadastraCliente(String nome,String sobrenome, String cpf, String contas)
+    public void CadastraCliente(Cliente cli)
 	{
 	
 		try
 		{
 			PreparedStatement CadastraCliente = con.prepareStatement("insert into " + " cliente(nome,sobrenome,cpf_cnpj,contas)" + "values(?,?,?,?)");
 			
-			CadastraCliente.setString(1,nome);
-                        CadastraCliente.setString(2,sobrenome);
-                        CadastraCliente.setString(3,cpf);
-                        CadastraCliente.setString(4,contas);
+			CadastraCliente.setString(1,cli.getNome());
+                        CadastraCliente.setString(2,cli.getSobrenome());
+                        CadastraCliente.setString(3,cli.getCPF_CNPJ());
+                        CadastraCliente.setString(4,cli.getContas());
                                          
 			
 			int qtdLinhasAfetadas = CadastraCliente.executeUpdate();
@@ -46,12 +46,12 @@ public class ClienteDAO {
 			System.err.println(e);
 		}
 	}
-    public void DeletaCliente(int id)
+    public void DeletaCliente(Cliente cli)
 	{
 		try 
 		{
 			PreparedStatement DeletaCliente = con.prepareStatement("delete form cliente where id_cliente = ?");
-                        DeletaCliente.setInt(1, id);
+                        DeletaCliente.setInt(1, cli.getIdCliente());
 			
 			int qtdLinhasAfetadas = DeletaCliente.executeUpdate();
                         
@@ -67,15 +67,15 @@ public class ClienteDAO {
 			System.err.println(e);
 		}
 	}
-     public void updateCliente(String nome,String sobrenome, String cpf,int id)
+     public void updateCliente(Cliente cli)
 	{
 		try
 		{
 			PreparedStatement updateCliente = con.prepareStatement("update cliente set nome = "+"?"+ ", sobrenome = "+"?"+", cpf_cnpj = "+"?"+" where id_cliente = ?");
-			updateCliente.setString(1,nome);
-                        updateCliente.setString(2,sobrenome);
-                        updateCliente.setString(3, cpf);
-                        updateCliente.setInt(4,id);
+			updateCliente.setString(1,cli.getNome());
+                        updateCliente.setString(2,cli.getSobrenome());
+                        updateCliente.setString(3, cli.getCPF_CNPJ());
+                        updateCliente.setInt(4,cli.getIdCliente());
                         
                         
                         int qtdLinhasAfetadas = updateCliente.executeUpdate();
