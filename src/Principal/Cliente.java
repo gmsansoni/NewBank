@@ -13,6 +13,9 @@ public class Cliente extends Pessoa{
     int IdCliente;
     String Contas;
 
+    public Cliente() {       
+    }
+    
     public Cliente(int IdCliente, String Contas, String Nome, String Sobrenome, String CPF_CNPJ) {
         super(Nome, Sobrenome, CPF_CNPJ);
         this.IdCliente = IdCliente;

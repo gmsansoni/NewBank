@@ -14,6 +14,9 @@ public abstract class Pessoa {
     protected String Sobrenome;
     protected String CPF_CNPJ;
 
+    public Pessoa() {
+    }
+    
     public Pessoa(String Nome, String Sobrenome, String CPF_CNPJ) {
         this.Nome = Nome;
         this.Sobrenome = Sobrenome;

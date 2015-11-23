@@ -26,8 +26,8 @@ public class Form_cliente extends javax.swing.JFrame {
          initComponents();
          estadoBtn();
          ChecaNumeroConta();
-         ConexaoBD c = new ConexaoBD();
-         c.preencherTabela();
+         ClienteDAO clidao = new ClienteDAO() ;
+         clidao.preencherTabela();
          
          
     }
@@ -327,8 +327,8 @@ public class Form_cliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisarActionPerformed
-        ConexaoBD c = new ConexaoBD();
-        c.preencherTabela();
+         ClienteDAO clidao = new ClienteDAO() ;
+         clidao.preencherTabela();
     }//GEN-LAST:event_txtPesquisarActionPerformed
 
     private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
@@ -354,30 +354,42 @@ public class Form_cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_sairActionPerformed
 
     private void btn_aplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aplicarActionPerformed
+        ClienteDAO clidao = new ClienteDAO() ;
         ConexaoBD c = new ConexaoBD();
-        c.updateCliente(txt_nome.getText(), txt_sobrenome.getText(), txt_cpfcnpj.getText(), Integer.parseInt(txt_nroConta.getText()));
+        Cliente cli = new Cliente();
+        cli.setNome(txt_nome.getText());
+        cli.setSobrenome(txt_sobrenome.getText());
+        cli.setCPF_CNPJ(txt_cpfcnpj.getText());
+        cli.setContas(txt_nroConta.getText());
+        clidao.updateCliente(cli);
         c.updateConta(Double.parseDouble(txt_limite.getText()),Integer.parseInt(txt_nroConta.getText()));
-        c.preencherTabela();
+        clidao.preencherTabela();
         estadoBtn();
     }//GEN-LAST:event_btn_aplicarActionPerformed
 
     private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
        ConexaoBD c = new ConexaoBD();
-      
-       
+       ClienteDAO clidao = new ClienteDAO() ;
+       Cliente cli = new Cliente();
+       cli.setNome(txt_nome.getText());
+       cli.setSobrenome(txt_sobrenome.getText());
+       cli.setCPF_CNPJ(txt_cpfcnpj.getText());
        if(cb_corrente.isSelected() && cb_poupanca.isSelected())
        {
-        c.CadastraCliente(txt_nome.getText(), txt_sobrenome.getText(), txt_cpfcnpj.getText(), "3");
+        cli.setContas("3");
+        clidao.CadastraCliente(cli);
         c.CadastraConta("3", txt_limite.getText());
        }
        else if (cb_corrente.isSelected())
        {
-        c.CadastraCliente(txt_nome.getText(), txt_sobrenome.getText(), txt_cpfcnpj.getText(), "1");
+        cli.setContas("1");
+        clidao.CadastraCliente(cli);
         c.CadastraConta("1", txt_limite.getText());
        }
        else if(cb_poupanca.isSelected())
        {
-        c.CadastraCliente(txt_nome.getText(), txt_sobrenome.getText(), txt_cpfcnpj.getText(), "2");
+        cli.setContas("2");
+        clidao.CadastraCliente(cli);
         c.CadastraConta("2", txt_limite.getText());
        }
        
@@ -390,7 +402,7 @@ public class Form_cliente extends javax.swing.JFrame {
        
        JOptionPane.showMessageDialog(null, "Cadastro Efetuado com Sucesso!");
        
-       c.preencherTabela();
+       clidao.preencherTabela();
        
        estadoBtn();
 
@@ -411,18 +423,18 @@ public class Form_cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableClienteMouseClicked
 
     private void txtPesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyPressed
-        ConexaoBD c = new ConexaoBD();
-        c.preencherTabela();
+        ClienteDAO clidao = new ClienteDAO() ;
+        clidao.preencherTabela();
     }//GEN-LAST:event_txtPesquisarKeyPressed
 
     private void txtPesquisarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyTyped
-        ConexaoBD c = new ConexaoBD();
-        c.preencherTabela();
+        ClienteDAO clidao = new ClienteDAO() ;
+        clidao.preencherTabela();
     }//GEN-LAST:event_txtPesquisarKeyTyped
 
     private void txtPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyReleased
-       ConexaoBD c = new ConexaoBD();
-       c.preencherTabela();
+       ClienteDAO clidao = new ClienteDAO() ;
+        clidao.preencherTabela();
        
     }//GEN-LAST:event_txtPesquisarKeyReleased
 
@@ -432,9 +444,15 @@ public class Form_cliente extends javax.swing.JFrame {
 
     private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
         ConexaoBD c = new ConexaoBD();
+        ClienteDAO clidao = new ClienteDAO();
         c.DeletaConta(Integer.parseInt(txt_nroConta.getText()));
-        c.DeletaCliente(Integer.parseInt(txt_nroConta.getText()));
-        c.preencherTabela();
+        Cliente cli = new Cliente();
+        cli.setNome(txt_nome.getText());
+        cli.setSobrenome(txt_sobrenome.getText());
+        cli.setCPF_CNPJ(txt_cpfcnpj.getText());
+        cli.setContas(txt_nroConta.getText());
+        clidao.DeletaCliente(cli);
+        clidao.preencherTabela();
     }//GEN-LAST:event_btn_excluirActionPerformed
 
 

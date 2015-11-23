@@ -6,11 +6,17 @@
 package Principal;
 
 import static Principal.ConexaoBD.con;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 //import java.sql.PreparedStatement;
 import java.sql.*;
 //import java.sql.SQLException;
 //import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 
 /**
@@ -50,8 +56,8 @@ public class ClienteDAO {
 	{
 		try 
 		{
-			PreparedStatement DeletaCliente = con.prepareStatement("delete form cliente where id_cliente = ?");
-                        DeletaCliente.setInt(1, cli.getIdCliente());
+			PreparedStatement DeletaCliente = con.prepareStatement("delete form cliente where cpf_cnpj = '?'");
+                        DeletaCliente.setString(1, cli.getCPF_CNPJ());
 			
 			int qtdLinhasAfetadas = DeletaCliente.executeUpdate();
                         
@@ -145,4 +151,114 @@ public class ClienteDAO {
              Form_cliente.jTableCliente.setAutoResizeMode(Form_cliente.jTableCliente.AUTO_RESIZE_OFF);
              Form_cliente.jTableCliente.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }              
+    public static void backupClientes() 
+	{
+		ConexaoBD c = new ConexaoBD();
+			c.connect();
+					
+			ResultSet rs;
+			Statement stm;
+					
+			try{
+				stm = c.con.createStatement();
+				
+				rs = stm.executeQuery("select * from cliente");
+				
+				FileWriter arq = new FileWriter("backupCliente.txt");
+				
+				PrintWriter gravaArq = new PrintWriter(arq);
+				/*gravaArq.printf("BackUp dos Livros no Banco de Dados\n");
+				gravaArq.println();
+				gravaArq.printf("ID \t TITULO \t AUTOR");
+				gravaArq.println("\n");*/
+				
+				while(rs.next())
+				{
+				gravaArq.printf("%s %s %s %s %s %s %s %s",rs.getString("nome"),";",rs.getString("sobrenome"),";",rs.getString("cpf_cnpj"),";",rs.getString("contas"),";");
+		
+				
+				}
+				arq.close();
+				JOptionPane.showMessageDialog(null, "Backup de Clientes Realizado com sucesso!");
+			}
+			catch(SQLException e)
+				{
+				System.out.println("Erro SQL");
+				}
+			catch(Exception e)
+			{
+				System.out.println("erro erro no backup de livro");
+			}
+	}
+        public static void importaCliente()
+		{
+			ConexaoBD c = new ConexaoBD();
+			c.connect();
+			
+			int qtdLinhasAfetadas = 0;
+			
+			Statement stm = null;
+			
+			String line = null;  
+			  
+		      try {  
+		    	 stm = c.con.createStatement();
+		    	 
+		         FileReader reader = new FileReader("backupCliente.txt"); // Localização do Arquivo  
+		         BufferedReader buffer = new BufferedReader(reader);  
+		         StringTokenizer st = null;  
+		           
+		         String nome;         // Armazena campo de nome  
+		         String sobrenome;      // Armazena campo de sobrenome
+                         String cpf;            // armazena campo cpf
+                         String contas;             // armazena a qtd de contas
+		         
+		  
+		         while ((line = buffer.readLine()) != null) {  
+		                                            
+		              
+		            // UTILIZA DELIMITADOR ; PARA DIVIDIR OS CAMPOS  
+		            st = new StringTokenizer(line, ";");  
+		            String dados = null;  
+		  
+		            while (st.hasMoreTokens()) {  
+		  
+		               // Campo NUMERO  
+		               dados = st.nextToken();  
+		               nome = dados;  
+		                 
+		               // Campo MATRICULA  
+		               dados = st.nextToken();  
+		               sobrenome = dados;  
+                               
+                               dados = st.nextToken();
+                               cpf = dados;
+                               
+                               dados = st.nextToken();
+                               contas = dados;
+		               
+		               PreparedStatement importaCliente = c.con.prepareStatement("insert into cliente(nome,sobrenome,cpf_cnpj,contas) values(?,?,?,?)");
+		               importaCliente.setString(1, nome);
+		               importaCliente.setString(2, sobrenome);
+                               importaCliente.setString(3, cpf);
+		               importaCliente.setString(4, contas);
+		               qtdLinhasAfetadas += importaCliente.executeUpdate(); 
+ 		            }  
+		            JOptionPane.showMessageDialog(null,"Importacao de Clientes Concluida\nQuantidade de Clientes Recuperados: "+ qtdLinhasAfetadas);
+		         }  
+		         buffer.close();  
+		         reader.close();  
+		  
+		      } 
+		      catch(SQLException e)
+		      {
+		    	  System.err.println(e);
+		      }
+		      catch (Exception e)
+		      {  
+		         e.printStackTrace();  
+		      } 
+		}
+          
+               
 }
