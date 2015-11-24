@@ -31,6 +31,7 @@ public class ClienteDAO {
 	
 		try
 		{
+                    
 			PreparedStatement CadastraCliente = con.prepareStatement("insert into " + " cliente(nome,sobrenome,cpf_cnpj,contas)" + "values(?,?,?,?)");
 			
 			CadastraCliente.setString(1,cli.getNome());

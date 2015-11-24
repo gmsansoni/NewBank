@@ -26,6 +26,8 @@ public class Form_cliente extends javax.swing.JFrame {
          initComponents();
          estadoBtn();
          ChecaNumeroConta();
+         ConexaoBD c = new ConexaoBD();
+         c.connect();
          ClienteDAO clidao = new ClienteDAO() ;
          clidao.preencherTabela();
          
@@ -356,6 +358,7 @@ public class Form_cliente extends javax.swing.JFrame {
     private void btn_aplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aplicarActionPerformed
         ClienteDAO clidao = new ClienteDAO() ;
         ConexaoBD c = new ConexaoBD();
+        c.connect();
         Cliente cli = new Cliente();
         cli.setNome(txt_nome.getText());
         cli.setSobrenome(txt_sobrenome.getText());
@@ -369,6 +372,7 @@ public class Form_cliente extends javax.swing.JFrame {
 
     private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
        ConexaoBD c = new ConexaoBD();
+        c.connect();
        ClienteDAO clidao = new ClienteDAO() ;
        Cliente cli = new Cliente();
        cli.setNome(txt_nome.getText());
@@ -423,17 +427,24 @@ public class Form_cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableClienteMouseClicked
 
     private void txtPesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyPressed
+        ConexaoBD c = new ConexaoBD();
+        c.connect();
         ClienteDAO clidao = new ClienteDAO() ;
         clidao.preencherTabela();
     }//GEN-LAST:event_txtPesquisarKeyPressed
 
     private void txtPesquisarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyTyped
+        
+        ConexaoBD c = new ConexaoBD();
+        c.connect();
         ClienteDAO clidao = new ClienteDAO() ;
         clidao.preencherTabela();
     }//GEN-LAST:event_txtPesquisarKeyTyped
 
     private void txtPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyReleased
-       ClienteDAO clidao = new ClienteDAO() ;
+       ConexaoBD c = new ConexaoBD();
+        c.connect();
+        ClienteDAO clidao = new ClienteDAO() ;
         clidao.preencherTabela();
        
     }//GEN-LAST:event_txtPesquisarKeyReleased
@@ -444,6 +455,7 @@ public class Form_cliente extends javax.swing.JFrame {
 
     private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
         ConexaoBD c = new ConexaoBD();
+        c.connect();
         ClienteDAO clidao = new ClienteDAO();
         c.DeletaConta(Integer.parseInt(txt_nroConta.getText()));
         Cliente cli = new Cliente();
