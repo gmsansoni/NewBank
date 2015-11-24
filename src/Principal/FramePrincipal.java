@@ -218,7 +218,8 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
        ConexaoBD c = new ConexaoBD();
-       c.backupContas();
+       ContaDAO condao = new ContaDAO();
+       condao.backupContas();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -228,7 +229,8 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
       ConexaoBD c = new ConexaoBD();
-      c.importaContas();
+      ContaDAO condao = new ContaDAO();
+      condao.importaContas();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**

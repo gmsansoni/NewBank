@@ -360,41 +360,43 @@ public class Form_cliente extends javax.swing.JFrame {
         ConexaoBD c = new ConexaoBD();
         c.connect();
         Cliente cli = new Cliente();
+        ContaDAO condao = new ContaDAO();
         cli.setNome(txt_nome.getText());
         cli.setSobrenome(txt_sobrenome.getText());
         cli.setCPF_CNPJ(txt_cpfcnpj.getText());
         cli.setContas(txt_nroConta.getText());
         clidao.updateCliente(cli);
-        c.updateConta(Double.parseDouble(txt_limite.getText()),Integer.parseInt(txt_nroConta.getText()));
+        condao.updateConta(Double.parseDouble(txt_limite.getText()),Integer.parseInt(txt_nroConta.getText()));
         clidao.preencherTabela();
         estadoBtn();
     }//GEN-LAST:event_btn_aplicarActionPerformed
 
     private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
        ConexaoBD c = new ConexaoBD();
-        c.connect();
+       c.connect();
        ClienteDAO clidao = new ClienteDAO() ;
        Cliente cli = new Cliente();
        cli.setNome(txt_nome.getText());
        cli.setSobrenome(txt_sobrenome.getText());
        cli.setCPF_CNPJ(txt_cpfcnpj.getText());
+       ContaDAO condao = new ContaDAO();
        if(cb_corrente.isSelected() && cb_poupanca.isSelected())
        {
         cli.setContas("3");
         clidao.CadastraCliente(cli);
-        c.CadastraConta("3", txt_limite.getText());
+        condao.CadastraConta("3", txt_limite.getText());
        }
        else if (cb_corrente.isSelected())
        {
         cli.setContas("1");
         clidao.CadastraCliente(cli);
-        c.CadastraConta("1", txt_limite.getText());
+        condao.CadastraConta("1", txt_limite.getText());
        }
        else if(cb_poupanca.isSelected())
        {
         cli.setContas("2");
         clidao.CadastraCliente(cli);
-        c.CadastraConta("2", txt_limite.getText());
+        condao.CadastraConta("2", txt_limite.getText());
        }
        
        txt_nome.setText(null);
@@ -457,7 +459,8 @@ public class Form_cliente extends javax.swing.JFrame {
         ConexaoBD c = new ConexaoBD();
         c.connect();
         ClienteDAO clidao = new ClienteDAO();
-        c.DeletaConta(Integer.parseInt(txt_nroConta.getText()));
+        ContaDAO condao = new ContaDAO();
+        condao.DeletaConta(Integer.parseInt(txt_nroConta.getText()));
         Cliente cli = new Cliente();
         cli.setNome(txt_nome.getText());
         cli.setSobrenome(txt_sobrenome.getText());

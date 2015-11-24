@@ -20,7 +20,9 @@ public class Form_saque extends javax.swing.JFrame {
     public Form_saque() {
         initComponents();
         ConexaoBD c = new ConexaoBD();
-        c.preencherTabelaSaque();       
+        c.connect();
+        ContaDAO condao = new ContaDAO();
+        condao.preencherTabelaSaque();       
         estadoTxt();
     }
 
@@ -222,17 +224,23 @@ public class Form_saque extends javax.swing.JFrame {
 
     private void txtPesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyPressed
         ConexaoBD c = new ConexaoBD();
-        c.preencherTabelaSaque();
+        c.connect();
+        ContaDAO condao = new ContaDAO();
+        condao.preencherTabelaSaque();
     }//GEN-LAST:event_txtPesquisarKeyPressed
 
     private void txtPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyReleased
         ConexaoBD c = new ConexaoBD();
-        c.preencherTabelaSaque();
+        c.connect();
+        ContaDAO condao = new ContaDAO();
+        condao.preencherTabelaSaque();
     }//GEN-LAST:event_txtPesquisarKeyReleased
 
     private void txtPesquisarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyTyped
         ConexaoBD c = new ConexaoBD();
-        c.preencherTabelaSaque();
+        c.connect();
+        ContaDAO condao = new ContaDAO();
+        condao.preencherTabelaSaque();
     }//GEN-LAST:event_txtPesquisarKeyTyped
 
     private void jTableCliente3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCliente3MouseClicked
@@ -251,11 +259,13 @@ public class Form_saque extends javax.swing.JFrame {
 
     private void btn_sacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sacarActionPerformed
         ConexaoBD c = new ConexaoBD();
+        c.connect();
+        ContaDAO condao = new ContaDAO();
         if((Double.parseDouble(txt_saque.getText())) < (Double.parseDouble(txt_limite.getText()))){
         double sub = (Double.parseDouble(txt_saldo3.getText()) - (Double.parseDouble(txt_saque.getText())));
-        c.Saque(sub ,Integer.parseInt(txt_nroConta3.getText()));
+        condao.Saque(sub ,Integer.parseInt(txt_nroConta3.getText()));
         txt_saque.setText(null);
-        c.preencherTabelaSaque();
+        condao.preencherTabelaSaque();
         txt_nome3.setText(null);
         txt_saldo3.setText(null);
         txt_nroConta3.setText(null);

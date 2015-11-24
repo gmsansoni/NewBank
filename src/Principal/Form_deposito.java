@@ -18,7 +18,9 @@ public class Form_deposito extends javax.swing.JFrame {
     public Form_deposito() {
         initComponents();
         ConexaoBD c = new ConexaoBD();
-        c.preencherTabelaDeposito();
+        c.connect();
+        ContaDAO condao = new ContaDAO();
+        condao.preencherTabelaDeposito();
         estadoTxt();
         
     }
@@ -228,25 +230,34 @@ public class Form_deposito extends javax.swing.JFrame {
 
     private void txtPesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyPressed
         ConexaoBD c = new ConexaoBD();
-        c.preencherTabelaDeposito();
+        c.connect();
+        ContaDAO condao = new ContaDAO();
+        condao.preencherTabelaDeposito();
     }//GEN-LAST:event_txtPesquisarKeyPressed
 
     private void txtPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyReleased
         ConexaoBD c = new ConexaoBD();
-        c.preencherTabelaDeposito();
+        c.connect();
+        ContaDAO condao = new ContaDAO();
+        condao.preencherTabelaDeposito();
     }//GEN-LAST:event_txtPesquisarKeyReleased
 
     private void txtPesquisarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyTyped
         ConexaoBD c = new ConexaoBD();
-        c.preencherTabelaDeposito();
+        c.connect();
+        ContaDAO condao = new ContaDAO();
+        condao.preencherTabelaDeposito();
     }//GEN-LAST:event_txtPesquisarKeyTyped
 
     private void btn_depositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_depositarActionPerformed
         ConexaoBD c = new ConexaoBD();
+        c.connect();
+        ContaDAO condao = new ContaDAO();
         double soma = Double.parseDouble(txt_deposito.getText()) + (Double.parseDouble(txt_saldo2.getText()));
-        c.Deposito(soma ,Integer.parseInt(txt_nroConta2.getText()));
+         
+        condao.Deposito(soma ,Integer.parseInt(txt_nroConta2.getText()));
         txt_deposito.setText(null);
-        c.preencherTabelaDeposito();
+        condao.preencherTabelaDeposito();
         txt_nome2.setText(null);
         txt_saldo2.setText(null);
         txt_nroConta2.setText(null);
